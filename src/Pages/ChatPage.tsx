@@ -1,5 +1,4 @@
 import { useState, useRef, useEffect } from 'react';
-import { useAccount } from 'wagmi';
 import Navbar from '../Components/Navbar';
 import axios from 'axios';
 

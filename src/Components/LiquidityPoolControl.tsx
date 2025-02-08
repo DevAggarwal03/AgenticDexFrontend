@@ -1,4 +1,4 @@
-import { Config, UseAccountReturnType, useWaitForTransactionReceipt, useWriteContract } from "wagmi";
+import { Config, UseAccountReturnType, useWriteContract } from "wagmi";
 import { publicClient } from "../Pages/LandingPage";
 // import LpJson from '../Constants/LineaSepolia/LiquidityPool.json'
 import LpJson from '../Constants/BaseSepolia/LiquidityPool.json'
@@ -18,10 +18,7 @@ const LiquidityPoolControl = ({account, symbol}: {account: UseAccountReturnType<
 
     const [removeLiqAmt, setRemoveLiqAmt] = useState<number>(0);
 
-    const {writeContract, isPending, error, data: hash} = useWriteContract();
-    // const { isLoading, isSuccess, isError } = useWaitForTransactionReceipt({
-    //     hash,
-    // });
+    const {writeContract} = useWriteContract();
 
     useEffect(() => {getBalance()}, [])
 

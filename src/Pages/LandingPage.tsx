@@ -1,6 +1,6 @@
 import Navbar from '../Components/Navbar';
 import { createPublicClient, http } from 'viem';
-import { baseSepolia, hardhat } from 'viem/chains';
+import { baseSepolia } from 'viem/chains';
 import { useAccount } from 'wagmi';
 import TokenMeasure from '../Components/TokenMeasure';
 import LiquidityPoolControl from '../Components/LiquidityPoolControl';

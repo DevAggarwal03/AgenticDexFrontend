@@ -12,7 +12,6 @@ import {
   QueryClient,
 } from "@tanstack/react-query";
 import React from 'react';
-import { lineaSepolia } from 'viem/chains';
 
 const config = getDefaultConfig({
   appName: 'Dex',

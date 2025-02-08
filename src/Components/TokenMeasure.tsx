@@ -4,7 +4,7 @@ import { publicClient } from "../Pages/LandingPage";
 // import mirJson from '../Constants/LineaSepolia/MIRToken.json'
 import clkJson from '../Constants/BaseSepolia/CLKToken.json'
 import mirJson from '../Constants/BaseSepolia/MIRToken.json'
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useWriteContract } from "wagmi";
 import { formatEther, parseEther } from "viem";
 
@@ -12,8 +12,8 @@ const TokenMeasure = ({account, symbol}: {account: UseAccountReturnType<Config>,
     const contractAddress = symbol === "CLK" ? clkJson.address : mirJson.address;
     const contractAbi = symbol === "CLK" ? clkJson.abi : mirJson.abi;
 
-    const {writeContract, isPending, error, data: hash} = useWriteContract();
-    const { isLoading, isSuccess, isError } = useWaitForTransactionReceipt({
+    const {writeContract, isPending, data: hash} = useWriteContract();
+    const { isLoading } = useWaitForTransactionReceipt({
         hash,
       });
 

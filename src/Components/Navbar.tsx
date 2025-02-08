@@ -1,4 +1,4 @@
-import { ConnectButton, WalletButton } from "@rainbow-me/rainbowkit";
+import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { Link, NavLink } from "react-router-dom";
 
 
