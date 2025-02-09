@@ -42,8 +42,6 @@ const ChatPage = () => {
             const response = await axios.post(`${import.meta.env.VITE_CHAT_BOT_URL}${endpoint}`, {
                 message: input
             });
-
-            console.log("response : ", activeChat === 'wallet' ? formatWalletResponse(response.data.response, 0) : response.data.response);
             setMessages(prev => [...prev, { role: 'bot', content: activeChat === 'wallet' ? response.data.response : response.data.response }]);
         } catch (error) {
             console.error('Error:', error);
@@ -54,76 +52,8 @@ const ChatPage = () => {
         }
     };
 
-    // const formatWalletResponse = (response: any) => {
-
-
-    //     // Extract JSON parts using regex
-    //     const matches = response.match(/data: ({.*?})/g);
-
-    //     if (matches) {
-    //         matches.forEach((match: any) => {
-    //             try {
-    //                 // Remove "data: " prefix and parse JSON
-    //                 const jsonStr = match.replace("data: ", "").trim();
-    //                 const parsed = JSON.parse(jsonStr);
-
-    //                 // Get content
-    //                 let content = parsed.content;
-
-    //                 // If content is another JSON, parse it
-    //                 if (typeof content === "string" && content.startsWith('{') && content.endsWith('}')) {
-    //                     content = JSON.parse(content);
-    //                 }
-
-    //                 // If content is an object, pretty print it
-    //                 if (typeof content === "object") {
-    //                     console.log(JSON.stringify(content, null, 2));
-    //                 }
-    //                 // If content is a string, format newlines
-    //                 else if (typeof content === "string") {
-    //                     const cleanedContent = content
-    //                         .replace(/\\n/g, "\n")  // Convert escaped newlines
-    //                         .replace(/  \* /g, "- ") // Fix bullet points
-    //                         .trim();
-
-    //                     console.log(cleanedContent);
-    //                     return cleanedContent;
-    //                 }
-    //             } catch (error) {
-    //                 console.error("Error parsing JSON:", error);
-    //             }
-    //         });
-    //     }
-
-    // }
-
-    const formatWalletResponse = (response: any, index: number) => {
-        let openingBracket = 0;
-        let count = 0;
-        let closingBracket = index;
-        for(let i = 0; i < response.length; i++){
-            if(response[i] === "{"){
-                if(count === 0){
-                    openingBracket = i;
-                }
-                count++;
-            }
-            if(response[i] === "}"){
-                if(count === 0){
-                    closingBracket = i;
-                    if(response[i+1] === "{"){
-                        formatWalletResponse(response, i+1)
-                    }
-                }
-                count--;
-            }
-        }
-        console.log(closingBracket, response[closingBracket+1]);
-        return response.substring(openingBracket, closingBracket + 1);
-    }
-
     return (
-        <div className='flex flex-col h-screen bg-[#0f172a]'>
+        <div className='flex flex-col min-h-screen pb-4 bg-[#0f172a]'>
             <Navbar />
 
             <div className="max-w-4xl mx-auto w-full flex-1 flex flex-col">
